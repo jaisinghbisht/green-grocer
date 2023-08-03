@@ -49,9 +49,7 @@ const HeaderComponent = () => {
                         </div>
                         <ul className="list"></ul>
                     </form>
-                    {/* Script */}
-                    {/* Replace the <script src="script.js"></script> line with the corresponding React logic */}
-                    {/* search section ends */}
+                    <script src="Search.js"></script>
                     <div className="width-30">
                         <ul className="cart-sect">
                             <li>
