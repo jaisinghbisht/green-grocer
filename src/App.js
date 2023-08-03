@@ -6,8 +6,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Cart from "./pages/Cart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./components/Search.js";
 
-const App = () => {
+function App() {
   return (
     <Router>
       <Header />
@@ -20,6 +21,6 @@ const App = () => {
       <Footer />
     </Router>
   );
-};
+}
 
 export default App;
