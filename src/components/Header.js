@@ -44,9 +44,11 @@ const HeaderComponent = () => {
                     <form autoComplete="off">
                         <div className="width-50">
                             <input type="text" id="input" name="searchBox" placeholder="Search for exquisite fruits, vegetables and more" />
+                            <Link to="./Shopping">
                             <button className="search-button">
                                 <FontAwesomeIcon icon={faSearch} className='fa-fade'/>
                             </button>
+                            </Link>
                         </div>
                         <ul className="list"></ul>
                     </form>
