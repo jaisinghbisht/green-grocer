@@ -3,6 +3,8 @@ import '../styles/footer.css'; // Make sure to import the CSS file
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF,faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faCopyright, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+
 
 const FooterComponent = () => {
     return (

@@ -4,6 +4,7 @@ import '../styles/header.css'; // Make sure to import the CSS file
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUsers, faMobile, faHome, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
+
 const HeaderComponent = () => {
     return (
         <>
@@ -60,7 +61,7 @@ const HeaderComponent = () => {
                             </li>
                             <li>
                             <FontAwesomeIcon icon={faUser} />&nbsp;
-                                <a href="login.html">Login</a>
+                            <Link to="/Signin">Login</Link>
                             </li>
                             <li>
                                 <Link to='/cart'>
