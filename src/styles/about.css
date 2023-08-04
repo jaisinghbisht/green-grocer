@@ -32,7 +32,7 @@
 
     min-height: 100vh;
     
-    background: url("images/aboutus.avif")no-repeat;
+    background: url("/public/images/aboutus.avif")no-repeat;
     background-size: cover;
     background-attachment: fixed;
    
