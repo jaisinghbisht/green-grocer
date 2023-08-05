@@ -57,19 +57,11 @@ const FooterComponent = () => {
             <h4>ADDRESS</h4>
             <ul>
               <li>
-                <a href="#">building 101</a>
-              </li>
-              <li>
-                <a href="#">Green Avenue</a>
-              </li>
-              <li>
-                <a href="#">Dehradun</a>
-              </li>
-              <li>
-                <a href="#">248001</a>
-              </li>
-              <li>
-                <a href="#">Uttarakhand</a>
+                <a href="#">building 101<br></br>
+                Green Avenue<br></br>
+                Dehradun<br></br>
+                248001<br></br>
+                Uttarakhand</a>
               </li>
             </ul>
           </div>
@@ -104,13 +96,11 @@ const FooterComponent = () => {
       <div className="footerBottom">
         <p>
           Copyright{" "}
-          <a href="#">
             <FontAwesomeIcon
               icon={faCopyright}
               className="fa-beat-fade"
               size="xl"
             />
-          </a>{" "}
           Green Grocer Supplies Pvt Ltd
           <span className="designer"></span>
         </p>

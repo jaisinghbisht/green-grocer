@@ -37,7 +37,7 @@ const HeaderComponent = () => {
                 <div className="container">
                     <div className="width-20">
                           <Link to="/">
-                            <img src="images/logo.png" alt="Your logo" style={{ position: 'relative', top: '-35px', left: '-15px', width: '220px', height: '100px' }} />
+                            <img src="images/logo.png" alt="Your logo" style={{ position: 'relative', top: '-35px', left: '-180px', width: '220px', height: '100px' }} />
                           </Link>
                     </div>
                     {/* search section */}
@@ -54,16 +54,17 @@ const HeaderComponent = () => {
                     </form>
                     <script src="Search.js"></script>
                     <div className="width-30">
-                        <ul className="cart-sect">
+                        <ul className="cart-sect" style={{ position: 'relative', right:-160 }}>
                             <li>
                             <Link to="/">
                             <FontAwesomeIcon icon={faHome} /> &nbsp;
-                            </Link>
                                 Home
+                            </Link>
                             </li>
                             <li>
+                            <Link to="/Signin">
                             <FontAwesomeIcon icon={faUser} />&nbsp;
-                            <Link to="/Signin">Login</Link>
+                            Login</Link>
                             </li>
                             <li>
                                 <Link to='/cart'>

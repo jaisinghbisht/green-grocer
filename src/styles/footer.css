@@ -122,7 +122,9 @@ ul {
     position: relative;
     animation: slidein 10s infinite;
 }
-
+.fa-beat-fade {
+    color: rgb(30, 255, 0); /* Replace 'red' with the desired color */
+  }
 
 /* Define the animation keyframes */
 
