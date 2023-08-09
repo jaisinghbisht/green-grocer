@@ -49,5 +49,5 @@ app.get("/api/city/:cityName", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Data Server is Running at Port No ${PORT}`);
 });
