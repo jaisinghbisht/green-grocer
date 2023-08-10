@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/header.css"; // Make sure to import the CSS file
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,21 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
+  const name = sessionStorage.getItem("name");
+  const [username, setUsername] = useState(sessionStorage.getItem("username"));
+
+  useEffect(() => {
+    // Listen for changes to the username key in sessionStorage
+    const handleStorageChange = (event) => {
+      if (event.key === "username") {
+        setUsername(event.newValue);
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
   return (
     <>
       {/* Top Header */}
@@ -83,25 +97,46 @@ const HeaderComponent = () => {
             >
               <li>
                 <Link to="/">
-                  <FontAwesomeIcon icon={faHome} />
-                  &nbsp; Home
+                  <FontAwesomeIcon icon={faHome} />  Home
                 </Link>
               </li>
-              <li>
-                <Link to="/Signin">
-                  <FontAwesomeIcon icon={faUser} />
-                  &nbsp; Login
-                </Link>
-              </li>
-              <li>
-                <Link to="/cart">
-                  <FontAwesomeIcon
-                    icon={faShoppingCart}
-                    size="lg"
-                    className="fa-flip"
-                  />
-                </Link>
-              </li>
+              {loggedIn ? (
+                <>
+                  <li>
+                    {" "}
+                    <span>Welcome, {name}!</span>
+                  </li>
+                  <li>
+                    <Link
+                      to=""
+                      onClick={() => {
+                        sessionStorage.clear();
+                        setUsername(null);
+                        setLoggedIn(false);
+                      }}
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/Signin">
+                      <FontAwesomeIcon icon={faUser} />  Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/cart">
+                      <FontAwesomeIcon
+                        icon={faShoppingCart}
+                        size="lg"
+                        className="fa-flip"
+                      />
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

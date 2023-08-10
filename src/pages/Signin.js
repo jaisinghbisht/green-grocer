@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/signin_up.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const Signin = () => {
+const Signin = ({ setLoggedIn }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,12 +19,15 @@ const Signin = () => {
         password,
       }),
     });
-    const data = res.json();
+    const data = await res.json();
     if (res.status === 400 || !data) {
-      alert("invaild credentilas");
+      alert("invalid credentials");
     } else {
+      sessionStorage.setItem("username", data.username); // Store username
+      sessionStorage.setItem("name", data.name); // Store user's name
       alert("login successful");
-      // navigate("/Home");
+      setLoggedIn(true); // Update loggedIn state to trigger re-render
+      navigate("/Shopping");
     }
   };
 
@@ -41,11 +44,25 @@ const Signin = () => {
                 <header>Log In</header>
               </div>
               <div className="input-box">
-                <input type="text" className="input-field" placeholder="Username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="Username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
                 <i className="bx bx-user"></i>
               </div>
               <div className="input-box">
-                <input type="password" className="input-field" placeholder="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input
+                  type="password"
+                  className="input-field"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <i className="bx bx-lock-alt"></i>
               </div>
               <div className="input-box">
