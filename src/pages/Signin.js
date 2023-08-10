@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/signin_up.css";
 import { Link, useNavigate } from "react-router-dom";
-//import axios from 'axios';
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -26,7 +25,6 @@ const Signin = () => {
     } else {
       alert("login successful");
       // navigate("/Home");
-      //window.location.href = '/home';
     }
   };
 
@@ -43,25 +41,11 @@ const Signin = () => {
                 <header>Log In</header>
               </div>
               <div className="input-box">
-                <input
-                  type="text"
-                  className="input-field"
-                  placeholder="Username"
-                  name="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+                <input type="text" className="input-field" placeholder="Username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <i className="bx bx-user"></i>
               </div>
               <div className="input-box">
-                <input
-                  type="password"
-                  className="input-field"
-                  placeholder="Password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <input type="password" className="input-field" placeholder="Password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <i className="bx bx-lock-alt"></i>
               </div>
               <div className="input-box">

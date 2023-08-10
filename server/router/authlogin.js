@@ -58,7 +58,6 @@ app.post("/signin", async (req, res) => {
         expires: new Date(Date.now() + 25892000000),
         httponly: true,
       });
-      //console.log("token");
 
       //if(!isMatch)
       if (password != UserLogin.password) {
@@ -66,13 +65,10 @@ app.post("/signin", async (req, res) => {
       } else {
         //res.json({message:"user signin successfully"});
         res.json({ message: "Login successful" });
-        //res.status(200);
       }
     } else {
       res.status(400).json({ msg: "invaild credentials" });
 
-      //res.status(400)({error:"invaild credentials"});
-      //alert("invaild credentials");
     }
   } catch (err) {
     console.log(err);
