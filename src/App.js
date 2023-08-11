@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Home from "./components/Home";
 import About from "./pages/About";
 import Shopping from "./pages/Shopping";
@@ -11,11 +11,19 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./components/Search.js";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // Initialize loggedIn state from sessionStorage
+  const [loggedIn, setLoggedIn] = useState(
+    sessionStorage.getItem("loggedIn") === "true"
+  );
+
+  // Persist loggedIn state in sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem("loggedIn", loggedIn);
+  }, [loggedIn]);
 
   return (
     <Router>
-      <Header loggedIn={loggedIn} />
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

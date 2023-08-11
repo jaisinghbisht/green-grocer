@@ -59,6 +59,7 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
         <div className="container">
           <div className="width-20">
             <Link to="/">
+              {" "}
               <img
                 src="images/logo.png"
                 alt="Your logo"
@@ -74,6 +75,7 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
           </div>
           {/* search section */}
           <form autoComplete="off">
+            {" "}
             <div className="width-50">
               <input
                 type="text"
@@ -82,15 +84,18 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
                 placeholder="Search for exquisite fruits, vegetables and more"
               />
               <Link to="./Shopping">
+                {" "}
                 <button className="search-button">
-                  <FontAwesomeIcon icon={faSearch} className="fa-fade" />
+                  {" "}
+                  <FontAwesomeIcon icon={faSearch} className="fa-fade" />{" "}
                 </button>
               </Link>
             </div>
             <ul className="list"></ul>
-          </form>
+          </form>{" "}
           <script src="Search.js"></script>
           <div className="width-30">
+            {" "}
             <ul
               className="cart-sect"
               style={{ position: "relative", right: -160 }}
@@ -98,15 +103,17 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
               <li>
                 <Link to="/">
                   <FontAwesomeIcon icon={faHome} />  Home
-                </Link>
-              </li>
+                </Link>{" "}
+              </li>{" "}
               {loggedIn ? (
                 <>
+                  {" "}
                   <li>
                     {" "}
-                    <span>Welcome, {name}!</span>
-                  </li>
+                    <span>Welcome, {username}!</span>{" "}
+                  </li>{" "}
                   <li>
+                    {" "}
                     <Link
                       to=""
                       onClick={() => {
@@ -115,6 +122,7 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
                         setLoggedIn(false);
                       }}
                     >
+                      {" "}
                       Logout
                     </Link>
                   </li>
