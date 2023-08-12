@@ -23,6 +23,25 @@ function App() {
     sessionStorage.setItem("loggedIn", loggedIn);
   }, [loggedIn]);
 
+  // Fetch the cart data when the component mounts
+  useEffect(() => {
+    const fetchCartData = async () => {
+      const userId = sessionStorage.getItem("userId");
+      if (!userId) {
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:8080/api/get-cart/${userId}`
+      );
+      const data = await response.json();
+      console.log("Fetched Cart Items:", data);
+      setCartItems(data);
+    };
+
+    fetchCartData();
+  }, []);
+
   return (
     <Router>
       <Header

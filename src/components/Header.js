@@ -118,7 +118,7 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
                   </li>{" "}
                   <li>
                     {/* Show the cart icon */}
-                    <Link to="/cart">
+                    <Link to="/Cart">
                       <FontAwesomeIcon
                         icon={faShoppingCart}
                         size="lg"
@@ -150,7 +150,7 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
                   </li>
                   <li>
                     {/* Show the cart icon */}
-                    <Link to="/cart">
+                    <Link to="/Cart">
                       <FontAwesomeIcon
                         icon={faShoppingCart}
                         size="lg"

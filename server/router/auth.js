@@ -32,7 +32,7 @@ router.get("/city/:cityName", async (req, res) => {
 
 // Add to Cart functionality
 router.post("/add-to-cart", async (req, res) => {
-  const { userId, itemName, itemPrice } = req.body;
+  const { userId, itemName, itemPrice, quantity } = req.body;
 
   try {
     const user = await User.findById(userId);
@@ -44,11 +44,28 @@ router.post("/add-to-cart", async (req, res) => {
     user.cart.push({
       name: itemName,
       price: itemPrice,
-      quantity: 1, // You can adjust this as needed
+      quantity,
     });
 
     await user.save();
     res.json({ message: "Item added to cart successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Get Cart functionality
+router.get("/get-cart/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return the user's cart
+    res.json(user.cart);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

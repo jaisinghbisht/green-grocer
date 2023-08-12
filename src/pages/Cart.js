@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/cart.css";
 
 const Cart = ({ cartItems }) => {
+  console.log("Cart items:", cartItems);
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
     0

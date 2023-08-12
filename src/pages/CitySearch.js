@@ -9,12 +9,13 @@ function CitySearch() {
   const [selectedVegetables, setSelectedVegetables] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
-  const handleAddToCart = async (itemName, itemPrice) => {
-    // console.log("Adding item to cart:", itemName, itemPrice);
+  const handleAddToCart = async (itemName, itemPrice, quantity) => {
+    console.log("Adding item to cart:", itemName, itemPrice);
+
     const newItem = {
       name: itemName,
       price: itemPrice,
-      quantity: 1,
+      quantity,
     };
     setCartItems((prevItems) => [...prevItems, newItem]);
 
@@ -26,8 +27,6 @@ function CitySearch() {
       return;
     }
 
-    // Make a POST request to the /add-to-cart route
-    // Make a POST request to the /api/add-to-cart route
     // Make a POST request to the /api/add-to-cart route
     const response = await fetch("http://localhost:8080/api/add-to-cart", {
       method: "POST",
@@ -38,6 +37,7 @@ function CitySearch() {
         userId,
         itemName,
         itemPrice,
+        quantity,
       }),
     });
 

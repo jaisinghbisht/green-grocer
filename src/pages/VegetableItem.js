@@ -4,7 +4,11 @@ const VegetableItem = ({ image, name, price, handleAddToCart }) => {
   const [isAdded, setIsAdded] = useState(false);
 
   const addToCart = (name, price) => {
-    handleAddToCart(name, price);
+    // Retrieve the selected quantity from the select element
+    const quantityElement = document.getElementById(`quantity_${name}`);
+    const quantity = parseInt(quantityElement.value);
+
+    handleAddToCart(name, price, quantity);
     setIsAdded(true);
     setTimeout(() => {
       setIsAdded(false);
