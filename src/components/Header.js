@@ -9,9 +9,14 @@ import {
   faHome,
   faUser,
   faShoppingCart,
+  faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
+  const [showStreamlit, setShowStreamlit] = useState(false);
+  const handleVegetableIconClick = () => {
+    setShowStreamlit(!showStreamlit);
+  };
   const [username, setUsername] = useState(sessionStorage.getItem("username"));
 
   useEffect(() => {
@@ -92,6 +97,10 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
             <ul className="list"></ul>
           </form>{" "}
           <script src="Search.js"></script>
+          {/* Vegetable icon button */}
+          <button className="chart-icon" onClick={handleVegetableIconClick}>
+            <FontAwesomeIcon icon={faChartLine} size="2x" />
+          </button>
           <div className="width-30">
             <ul
               className="cart-sect"
@@ -155,6 +164,20 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
           </div>
         </div>
       </div>
+      {showStreamlit && (
+        <div className="streamlit-container">
+          <button className="close-button" onClick={handleVegetableIconClick}>
+            Close
+          </button>
+          <iframe
+            title="Streamlit App"
+            src="http://localhost:8501"
+            width="100%"
+            height="600"
+            style={{ border: "none", marginTop: "20px" }}
+          ></iframe>
+        </div>
+      )}
     </>
   );
 };
