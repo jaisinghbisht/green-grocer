@@ -431,3 +431,26 @@ ul {
         top: 18px;
     }
 }
+.chart-icon {
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 7px;
+    margin-left: 300px; /* Adjust margin as needed */
+    color: #333; /* Set the color as needed */
+  }
+  
+  .hidden {
+    display: none;
+  }
+  .close-button {
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
