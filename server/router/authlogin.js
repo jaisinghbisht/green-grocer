@@ -66,10 +66,8 @@ app.post("/signin", async (req, res) => {
     const UserLogin = await User.findOne({ username: username });
 
     if (UserLogin) {
-      // const isMatch= bcrypt.compare(password,UserLogin.password);
       token = await UserLogin.generateAuthToken();
 
-      // Set the session data with the user information
       req.session.user = {
         id: UserLogin._id,
         username: UserLogin.username,
@@ -77,24 +75,23 @@ app.post("/signin", async (req, res) => {
         name: UserLogin.firstname,
       };
 
-      // Set the cookie with the session ID
       res.cookie("uniqueSessionID", req.sessionID, {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
 
-      //if(!isMatch)
       if (password !== UserLogin.password) {
-        res.status(400).json({ error: "invaild credentials" });
+        res.status(400).json({ error: "invalid credentials" });
       } else {
         res.json({
           message: "Login successful",
+          userId: UserLogin._id, // Return the userId
           username: UserLogin.username,
           name: UserLogin.firstname,
         });
       }
     } else {
-      res.status(400).json({ msg: "invaild credentials" });
+      res.status(400).json({ msg: "invalid credentials" });
     }
   } catch (err) {
     console.log(err);

@@ -16,7 +16,7 @@ const Signin = ({ setLoggedIn, setUsername }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: signinUsername, // Use the renamed variable
+        username: signinUsername,
         password,
       }),
     });
@@ -24,11 +24,12 @@ const Signin = ({ setLoggedIn, setUsername }) => {
     if (res.status === 400 || !data) {
       alert("invalid credentials");
     } else {
+      sessionStorage.setItem("userId", data.userId); // Store the userId
       sessionStorage.setItem("username", data.username);
       sessionStorage.setItem("name", data.name);
       alert("login successful");
       setLoggedIn(true);
-      setUsername(data.username); // Update the username using prop function
+      setUsername(data.username);
       setTimeout(() => {
         navigate("/Shopping");
       }, 100);

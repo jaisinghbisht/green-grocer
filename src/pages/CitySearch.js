@@ -1,25 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/citysearch.css";
-
-const VegetableItem = ({ image, name, price }) => {
-  return (
-    <div className="item">
-      <img src={image} alt={name} />
-      <div className="item-details">
-        <h3>{name}</h3>
-        <p className="price">Rs {price}/ KG</p>
-        <label htmlFor={`quantity_${name}`}>Quantity:</label>
-        <select id={`quantity_${name}`}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-        <button className="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-  );
-};
+import VegetableItem from "./VegetableItem";
 
 function CitySearch() {
   const [cities, setCities] = useState([]);
@@ -27,14 +9,43 @@ function CitySearch() {
   const [selectedVegetables, setSelectedVegetables] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
-  const handleAddToCart = (itemName, itemPrice) => {
-    console.log("Adding item to cart:", itemName, itemPrice);
+  const handleAddToCart = async (itemName, itemPrice) => {
+    // console.log("Adding item to cart:", itemName, itemPrice);
     const newItem = {
       name: itemName,
       price: itemPrice,
       quantity: 1,
     };
     setCartItems((prevItems) => [...prevItems, newItem]);
+
+    // Check if a user is logged in
+    const userId = sessionStorage.getItem("userId");
+    if (!userId) {
+      // If no user is logged in, display a message
+      alert("Log in to Add to Cart");
+      return;
+    }
+
+    // Make a POST request to the /add-to-cart route
+    // Make a POST request to the /api/add-to-cart route
+    // Make a POST request to the /api/add-to-cart route
+    const response = await fetch("http://localhost:8080/api/add-to-cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+        itemName,
+        itemPrice,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Error adding item to cart:", response.statusText);
+    } else {
+      alert("Item added to Cart successfully");
+    }
   };
 
   useEffect(() => {
