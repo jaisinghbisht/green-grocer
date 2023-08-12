@@ -3,6 +3,10 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const app = express();
 const cors = require("cors");
+
+const session = require("express-session"); // Add this line
+const cookieParser = require("cookie-parser"); // Add this line
+
 app.use(cors());
 
 require("../db/conn");
@@ -12,9 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello World app");
 });
 app.use(express.json());
-
-// Import the express-session module
-const session = require("express-session");
+app.use(cookieParser());
 
 // Set up the session middleware
 app.use(
@@ -83,9 +85,13 @@ app.post("/signin", async (req, res) => {
 
       //if(!isMatch)
       if (password !== UserLogin.password) {
-        res.status(400)({ error: "invaild credentials" });
+        res.status(400).json({ error: "invaild credentials" });
       } else {
-        res.json({ message: "Login successful" });
+        res.json({
+          message: "Login successful",
+          username: UserLogin.username,
+          name: UserLogin.firstname,
+        });
       }
     } else {
       res.status(400).json({ msg: "invaild credentials" });

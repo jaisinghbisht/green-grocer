@@ -25,6 +25,17 @@ function CitySearch() {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedVegetables, setSelectedVegetables] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleAddToCart = (itemName, itemPrice) => {
+    console.log("Adding item to cart:", itemName, itemPrice);
+    const newItem = {
+      name: itemName,
+      price: itemPrice,
+      quantity: 1,
+    };
+    setCartItems((prevItems) => [...prevItems, newItem]);
+  };
 
   useEffect(() => {
     axios
@@ -82,6 +93,7 @@ function CitySearch() {
             image={`images/vegetables/${vegetable.name.toLowerCase()}.jpeg`}
             name={vegetable.name}
             price={vegetable.price}
+            handleAddToCart={handleAddToCart}
           />
         ))}
       </div>

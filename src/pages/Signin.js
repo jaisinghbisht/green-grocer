@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "../styles/signin_up.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const Signin = ({ setLoggedIn }) => {
+const Signin = ({ setLoggedIn, setUsername }) => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [signinUsername, setSigninUsername] = useState(""); // Rename this variable
+
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
@@ -15,7 +16,7 @@ const Signin = ({ setLoggedIn }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        username: signinUsername, // Use the renamed variable
         password,
       }),
     });
@@ -23,11 +24,14 @@ const Signin = ({ setLoggedIn }) => {
     if (res.status === 400 || !data) {
       alert("invalid credentials");
     } else {
-      sessionStorage.setItem("username", data.username); // Store username
-      sessionStorage.setItem("name", data.name); // Store user's name
+      sessionStorage.setItem("username", data.username);
+      sessionStorage.setItem("name", data.name);
       alert("login successful");
-      setLoggedIn(true); // Update loggedIn state to trigger re-render
-      navigate("/Shopping");
+      setLoggedIn(true);
+      setUsername(data.username); // Update the username using prop function
+      setTimeout(() => {
+        navigate("/Shopping");
+      }, 100);
     }
   };
 
@@ -49,8 +53,8 @@ const Signin = ({ setLoggedIn }) => {
                   className="input-field"
                   placeholder="Username"
                   name="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={signinUsername} // Use the renamed variable
+                  onChange={(e) => setSigninUsername(e.target.value)} // Use the renamed setter function
                 />
                 <i className="bx bx-user"></i>
               </div>
@@ -71,7 +75,7 @@ const Signin = ({ setLoggedIn }) => {
               <div className="two-col">
                 <div className="one">
                   <input type="checkbox" id="login-check" />
-                  <label for="rlogin-check">Remember Me</label>
+                  <label htmlFor="login-check">Remember Me</label>
                 </div>
                 <div className="two"></div>
               </div>

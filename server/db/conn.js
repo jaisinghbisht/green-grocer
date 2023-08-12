@@ -1,3 +1,5 @@
+// db/conn.js
+
 const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);

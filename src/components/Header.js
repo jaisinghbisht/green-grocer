@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "../styles/header.css"; // Make sure to import the CSS file
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -12,11 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
-  const name = sessionStorage.getItem("name");
   const [username, setUsername] = useState(sessionStorage.getItem("username"));
 
   useEffect(() => {
-    // Listen for changes to the username key in sessionStorage
     const handleStorageChange = (event) => {
       if (event.key === "username") {
         setUsername(event.newValue);
@@ -95,25 +93,31 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
           </form>{" "}
           <script src="Search.js"></script>
           <div className="width-30">
-            {" "}
             <ul
               className="cart-sect"
               style={{ position: "relative", right: -160 }}
             >
               <li>
                 <Link to="/">
-                  <FontAwesomeIcon icon={faHome} />  Home
+                  <FontAwesomeIcon icon={faHome} /> Home
                 </Link>{" "}
               </li>{" "}
-              {loggedIn ? (
+              {loggedIn && (
                 <>
-                  {" "}
                   <li>
-                    {" "}
                     <span>Welcome, {username}!</span>{" "}
                   </li>{" "}
                   <li>
-                    {" "}
+                    {/* Show the cart icon */}
+                    <Link to="/cart">
+                      <FontAwesomeIcon
+                        icon={faShoppingCart}
+                        size="lg"
+                        className="fa-flip"
+                      />
+                    </Link>
+                  </li>
+                  <li>
                     <Link
                       to=""
                       onClick={() => {
@@ -127,14 +131,16 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
                     </Link>
                   </li>
                 </>
-              ) : (
+              )}
+              {!loggedIn && (
                 <>
                   <li>
                     <Link to="/Signin">
-                      <FontAwesomeIcon icon={faUser} />  Login
+                      <FontAwesomeIcon icon={faUser} /> Login
                     </Link>
                   </li>
                   <li>
+                    {/* Show the cart icon */}
                     <Link to="/cart">
                       <FontAwesomeIcon
                         icon={faShoppingCart}

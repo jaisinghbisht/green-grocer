@@ -8,28 +8,42 @@ import Cart from "./pages/Cart";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./components/Search.js";
 
 function App() {
-  // Initialize loggedIn state from sessionStorage
   const [loggedIn, setLoggedIn] = useState(
     sessionStorage.getItem("loggedIn") === "true"
   );
+  const [username, setUsername] = useState(
+    sessionStorage.getItem("username") || ""
+  );
 
-  // Persist loggedIn state in sessionStorage
+  const [cartItems, setCartItems] = useState([]);
+
   useEffect(() => {
     sessionStorage.setItem("loggedIn", loggedIn);
   }, [loggedIn]);
 
   return (
     <Router>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Header
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+        username={username}
+      />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/shopping" element={<Shopping />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/Signin" element={<Signin setLoggedIn={setLoggedIn} />} />
+        <Route
+          path="/shopping"
+          element={<Shopping setCartItems={setCartItems} />}
+        />
+        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route
+          path="/Signin"
+          element={
+            <Signin setLoggedIn={setLoggedIn} setUsername={setUsername} />
+          }
+        />
         <Route path="/Signup" element={<Signup />} />
       </Routes>
       <Footer />
