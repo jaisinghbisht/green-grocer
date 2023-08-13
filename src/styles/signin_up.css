@@ -18,8 +18,7 @@ body {
 }
 
 .wrapper {
-
-    top:65px;
+    top: 65px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +28,8 @@ body {
     background-attachment: fixed;
     background-position: center;
     z-index: 0;
-    margin-top: -62px;    /*     background: rgba(39,39,39,0.404);
+    margin-top: -62px;
+    /*     background: rgba(39,39,39,0.404);
  */
 }
 
@@ -194,8 +194,11 @@ header {
         flex-direction: column;
     }
 }
-  /* Extra Small Devices (portrait phones) */
-  @media only screen and (max-width: 576px) {
+
+
+/* Extra Small Devices (portrait phones) */
+
+@media only screen and (max-width: 576px) {
     .flex {
         flex: 1 1 100%;
         max-width: 100%;
@@ -208,28 +211,36 @@ header {
     }
 }
 
+
 /* Small Devices (landscape phones) */
+
 @media only screen and (min-width: 576px) and (max-width: 768px) {
     .flex {
         padding: 0 15px;
     }
 }
 
+
 /* Medium Devices (tablets) */
+
 @media only screen and (min-width: 768px) and (max-width: 992px) {
     .flex {
         padding: 0 30px;
     }
 }
 
+
 /* Large Devices (small laptops and tablets) */
+
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .container {
         max-width: 960px;
     }
 }
 
+
 /* Extra Large Devices (laptops and desktops) */
+
 @media only screen and (min-width: 1200px) {
     .container {
         max-width: 1140px;
