@@ -2,9 +2,12 @@ import React from "react";
 import "../styles/cart.css";
 
 const Cart = ({ cartItems }) => {
-  console.log("Cart items:", cartItems);
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
+    0
+  );
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
     0
   );
 
@@ -13,6 +16,7 @@ const Cart = ({ cartItems }) => {
       <div id="cartMainContainer">
         <h1>Checkout</h1>
         <h3 id="totalItem">Total Items: {totalItems}</h3>
+        <h3 id="totalPrice">Total Price: Rs {totalPrice}</h3>
       </div>
       <div id="cartItemsContainer">
         {cartItems.map((item, index) => (
@@ -23,6 +27,7 @@ const Cart = ({ cartItems }) => {
           </div>
         ))}
       </div>
+      <button id="buyButton">Buy Now</button>
     </div>
   );
 };

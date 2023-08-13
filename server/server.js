@@ -86,6 +86,10 @@ app.post("/api/add-to-cart", async (req, res) => {
   }
 });
 
+// Import routes from auth.js
+const authRoutes = require("./router/auth");
+app.use("/api", authRoutes);
+
 app.listen(PORT, () => {
   console.log(`Data Server is Running at Port No ${PORT}`);
 });
