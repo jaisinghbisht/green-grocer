@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -97,10 +97,10 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
             <ul className="list"></ul>
           </form>{" "}
           <script src="Search.js"></script>
-          {/* Vegetable icon button */}
-          <button className="chart-icon" onClick={handleVegetableIconClick}>
-            <FontAwesomeIcon icon={faChartLine} size="2x" />
-          </button>
+           {/* Vegetable icon button */}
+           <button className="chart-icon" onClick={handleVegetableIconClick}>
+              <FontAwesomeIcon icon={faChartLine} className="fa-fade" size="2xl" /> &nbsp; Vegetable Logs
+            </button>
           <div className="width-30">
             <ul
               className="cart-sect"

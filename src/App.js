@@ -8,6 +8,7 @@ import Cart from "./pages/Cart";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./components/Search.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -52,6 +53,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/shopping" element={<Shopping />} />
         <Route
           path="/shopping"
           element={<Shopping setCartItems={setCartItems} />}
