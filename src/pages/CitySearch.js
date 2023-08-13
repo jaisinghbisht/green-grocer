@@ -82,7 +82,6 @@ function CitySearch() {
 
   return (
     <div>
-      <label htmlFor="cityInput"></label>
       <select id="cityInput" value={selectedCity} onChange={handleCityChange}>
         <option value="">Select a city</option>
         {cities.map((city) => (

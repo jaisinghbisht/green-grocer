@@ -1,17 +1,37 @@
 /* Styles for the main container */
 
+#cityInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.main-btn {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.main-btn:hover {
+    background-color: darkgreen;
+}
+
 .item {
     display: inline-block;
     width: 18%;
-    /* Adjust as needed for spacing and responsiveness */
     margin: 1%;
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
 }
-
-
-/* Style for the vegetable image container */
 
 .item img {
     max-width: 100%;
@@ -20,24 +40,14 @@
     margin: 0 auto;
 }
 
-
-/* Set a fixed height for the image container */
-
 .item img {
     height: 150px;
-    /* Adjust as needed */
 }
-
-
-/* Styles for the vegetable name */
 
 .item h3 {
     margin: 5px 0;
     font-size: 16px;
 }
-
-
-/* Styles for the price */
 
 .item .price {
     font-weight: bold;
@@ -45,9 +55,6 @@
     color: green;
     margin-bottom: 5px;
 }
-
-
-/* Styles for the quantity label and select */
 
 .item .quantity-container {
     display: flex;
@@ -65,9 +72,6 @@
     padding: 5px;
 }
 
-
-/* Styles for the add to cart button */
-
 .item button.add-to-cart {
     display: block;
     width: 100%;
@@ -78,9 +82,6 @@
     border: none;
     cursor: pointer;
 }
-
-
-/* Hover effect for the add to cart button */
 
 .item button.add-to-cart:hover {
     background-color: darkgreen;

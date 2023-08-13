@@ -2,32 +2,38 @@ import React from "react";
 import "../styles/cart.css";
 
 const Cart = ({ cartItems }) => {
-  const totalItems = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
   return (
-    <div>
-      <div id="cartMainContainer">
-        <h1>Checkout</h1>
-        <h3 id="totalItem">Total Items: {totalItems}</h3>
-        <h3 id="totalPrice">Total Price: Rs {totalPrice}</h3>
-      </div>
-      <div id="cartItemsContainer">
+    <div className="cart-container">
+      <div className="cart-items">
+        <div className="cart-item cart-item-header">
+          <p>Sr. No.</p>
+          <p>Name of Vegetable</p>
+          <p>Price</p>
+          <p>Quantity</p>
+          <p>Total Amount</p>
+        </div>
         {cartItems.map((item, index) => (
           <div className="cart-item" key={index}>
+            <p>{index + 1}</p>
             <p>{item.name}</p>
-            <p>Price: Rs {item.price}</p>
-            <p>Quantity: {item.quantity}</p>
+            <p>Rs {item.price}</p>
+            <p>{item.quantity}</p>
+            <p>Rs {item.price * item.quantity}</p>
           </div>
         ))}
       </div>
-      <button id="buyButton">Buy Now</button>
+      <div className="cart-summary">
+        <div className="total-summary">
+          <p>Total Items: {cartItems.length}</p>
+          <p>Total Price: Rs {totalPrice}</p>
+        </div>
+        <button className="buy-button">Buy Now</button>
+      </div>
     </div>
   );
 };
