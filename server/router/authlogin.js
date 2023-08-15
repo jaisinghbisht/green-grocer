@@ -31,13 +31,13 @@ app.use(
 app.post("/register", async (req, res) => {
   const { fname, lname, username, email, password } = req.body;
   if (!fname || !lname || !username || !email || !password) {
-    return res.status(422).json({ error: "Plz filled the field properly" });
+    return res.status(422).json({ error: "Please Fill the Fields Properly" });
   }
   try {
     const UserExist = await User.findOne({ email: email });
 
     if (UserExist) {
-      return res.status(422).json({ error: "Email already exists" });
+      return res.status(422).json({ error: "Email Already Exists!" });
     }
     const user = new User({
       firstname: fname,
@@ -47,7 +47,7 @@ app.post("/register", async (req, res) => {
       password: password,
     });
     await user.save();
-    return res.status(201).json({ error: "user registered successfully" });
+    return res.status(201).json({ error: "User Registered Successfully" });
   } catch (err) {
     console.log(err);
   }
@@ -60,7 +60,7 @@ app.post("/signin", async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      return res.status(400).json({ error: "Plz filled the data" });
+      return res.status(400).json({ error: "Please fill the Data" });
     }
 
     const UserLogin = await User.findOne({ username: username });
@@ -81,7 +81,7 @@ app.post("/signin", async (req, res) => {
       });
 
       if (password !== UserLogin.password) {
-        res.status(400).json({ error: "invalid credentials" });
+        res.status(400).json({ error: "Invalid Credentials" });
       } else {
         res.json({
           message: "Login successful",
@@ -91,7 +91,7 @@ app.post("/signin", async (req, res) => {
         });
       }
     } else {
-      res.status(400).json({ msg: "invalid credentials" });
+      res.status(400).json({ msg: "Invalid Credentials" });
     }
   } catch (err) {
     console.log(err);
@@ -104,11 +104,11 @@ app.get("/logout", (req, res) => {
   // Destroy the session data on the server side
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).json({ error: "Error logging out" });
+      return res.status(500).json({ error: "Error Logging Out" });
     }
     // Clear the cookie with the session ID
     res.clearCookie("uniqueSessionID");
-    res.json({ message: "Logout successful" });
+    res.json({ message: "Logged Out successfully" });
   });
 });
 

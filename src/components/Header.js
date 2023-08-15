@@ -43,7 +43,7 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
                 <li>
                   <FontAwesomeIcon icon={faUsers} className="fa-fade" />
                   <a className="head1mr" href="#">
-                    Refer Your Friend And Earn Rs. 500 Cashback
+                    <span> Refer Your Friend And Earn Rs. 500 Cashback</span>
                   </a>
                 </li>
                 <li>
@@ -97,10 +97,15 @@ const HeaderComponent = ({ loggedIn, setLoggedIn }) => {
             <ul className="list"></ul>
           </form>{" "}
           <script src="Search.js"></script>
-           {/* Vegetable icon button */}
-           <button className="chart-icon" onClick={handleVegetableIconClick}>
-              <FontAwesomeIcon icon={faChartLine} className="fa-fade" size="2xl" /> &nbsp; Vegetable Logs
-            </button>
+          {/* Vegetable icon button */}
+          <button className="chart-icon" onClick={handleVegetableIconClick}>
+            <FontAwesomeIcon
+              icon={faChartLine}
+              className="fa-fade"
+              size="2xl"
+            />{" "}
+            &nbsp; Vegetable Logs
+          </button>
           <div className="width-30">
             <ul
               className="cart-sect"

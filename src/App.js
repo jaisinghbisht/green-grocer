@@ -9,6 +9,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./components/Search.js";
+import ContactUs from "./pages/Contactus";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(
@@ -53,6 +54,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contactus" element={<ContactUs />} />
         {/* <Route path="/shopping" element={<Shopping />} /> */}
         <Route
           path="/shopping"

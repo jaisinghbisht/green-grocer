@@ -83,7 +83,7 @@ const FooterComponent = () => {
                 <FontAwesomeIcon icon={faLinkedinIn} className="fa-fade" />
               </a>
               <h4>CONTACT US</h4>
-              <a href="contactus.html">
+              <a href="/contactus">
                 <FontAwesomeIcon
                   icon={faPhone}
                   className="fa-beat-fade"
