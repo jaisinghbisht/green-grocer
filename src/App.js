@@ -53,12 +53,17 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/shopping" element={<Shopping />} />
+        {/* <Route path="/shopping" element={<Shopping />} /> */}
         <Route
           path="/shopping"
           element={<Shopping setCartItems={setCartItems} />}
         />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+
+        <Route
+          path="/cart"
+          element={<Cart cartItems={cartItems} setCartItems={setCartItems} />}
+        />
+
         <Route
           path="/Signin"
           element={

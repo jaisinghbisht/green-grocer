@@ -2,7 +2,10 @@ import React from "react";
 import axios from "axios";
 import "../styles/cart.css";
 
-const Cart = ({ cartItems }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+const Cart = ({ cartItems, setCartItems }) => {
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -14,6 +17,10 @@ const Cart = ({ cartItems }) => {
     try {
       const deleteUrl = `http://localhost:8080/api/delete-from-cart/${userId}/${itemId}`;
       await axios.delete(deleteUrl);
+      // Update cartItems state here
+      setCartItems((prevCartItems) =>
+        prevCartItems.filter((item) => item._id !== itemId)
+      );
     } catch (error) {
       console.log(error);
     }
@@ -74,15 +81,18 @@ const Cart = ({ cartItems }) => {
             <p>{item.name}</p>
             <p>Rs {item.price}</p>
             <p>{item.quantity}</p>
-            <p>Rs {item.price * item.quantity}</p>
-            <button
-              onClick={() => {
-                const userId = sessionStorage.getItem("userId");
-                handleDeleteItem(userId, item._id);
-              }}
-            >
-              Delete
-            </button>
+            <p>Rs {(item.price * item.quantity).toFixed(2)}</p>
+            <div className="cart-item-delete">
+              <button
+                className="delete-icon-button"
+                onClick={() => {
+                  const userId = sessionStorage.getItem("userId");
+                  handleDeleteItem(userId, item._id);
+                }}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
           </div>
         ))}
       </div>

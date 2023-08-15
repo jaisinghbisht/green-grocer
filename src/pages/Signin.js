@@ -22,12 +22,11 @@ const Signin = ({ setLoggedIn, setUsername }) => {
     });
     const data = await res.json();
     if (res.status === 400 || !data) {
-      alert("invalid credentials");
+      alert("Invalid Credentials");
     } else {
       sessionStorage.setItem("userId", data.userId); // Store the userId
       sessionStorage.setItem("username", data.username);
       sessionStorage.setItem("name", data.name);
-      alert("login successful");
       setLoggedIn(true);
       setUsername(data.username);
       setTimeout(() => {

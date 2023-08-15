@@ -10,7 +10,7 @@ function CitySearch() {
   const [cartItems, setCartItems] = useState([]);
 
   const handleAddToCart = async (itemName, itemPrice, quantity) => {
-    console.log("Adding item to cart:", itemName, itemPrice);
+    console.log("Adding Item to Cart:", itemName, itemPrice);
 
     const newItem = {
       name: itemName,
@@ -42,9 +42,7 @@ function CitySearch() {
     });
 
     if (!response.ok) {
-      console.error("Error adding item to cart:", response.statusText);
-    } else {
-      alert("Item added to Cart successfully");
+      console.error("Error Adding Item to Cart: ", response.statusText);
     }
   };
 
@@ -55,7 +53,7 @@ function CitySearch() {
         setCities(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching cities:", error);
+        console.error("Error Fetching Cities: ", error);
       });
   }, []);
 
@@ -71,7 +69,7 @@ function CitySearch() {
         setSelectedVegetables(response.data.vegetables);
       })
       .catch((error) => {
-        console.error("Error fetching vegetables:", error);
+        console.error("Error Fetching Vegetables: ", error);
         setSelectedVegetables([]);
       });
   };
