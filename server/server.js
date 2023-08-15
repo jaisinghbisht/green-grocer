@@ -1,16 +1,19 @@
 // server.js
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
-
+const paymentRoutes=require('./paymentController')
 const app = express();
 const PORT = process.env.PORT || 8080;
+var bodyParser = require('body-parser')
+
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json())
+
 
 // Set up the session middleware
 app.use(
@@ -86,9 +89,18 @@ app.post("/api/add-to-cart", async (req, res) => {
   }
 });
 
+
+
+
 // Import routes from auth.js
 const authRoutes = require("./router/auth");
+const { config } = require("dotenv");
 app.use("/api", authRoutes);
+
+app.use("/api/payment/", paymentRoutes);
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Data Server is Running at Port No ${PORT}`);
