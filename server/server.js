@@ -3,17 +3,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
-const paymentRoutes=require('./paymentController')
+const paymentRoutes = require("./paymentController");
 const app = express();
 const PORT = process.env.PORT || 8080;
-var bodyParser = require('body-parser')
-
+var bodyParser = require("body-parser");
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
 
 // Set up the session middleware
 app.use(
@@ -65,42 +63,12 @@ app.get("/api/city/:cityName", async (req, res) => {
   }
 });
 
-// Add to Cart functionality
-app.post("/api/add-to-cart", async (req, res) => {
-  const { userId, itemName, itemPrice } = req.body;
-
-  try {
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Add the item to the user's cart
-    user.cart.push({
-      name: itemName,
-      price: itemPrice,
-      quantity: 1, // You can adjust this as needed
-    });
-
-    await user.save();
-    res.json({ message: "Item added to cart successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-
-
-
 // Import routes from auth.js
 const authRoutes = require("./router/auth");
 const { config } = require("dotenv");
 app.use("/api", authRoutes);
 
 app.use("/api/payment/", paymentRoutes);
-
-
-
 
 app.listen(PORT, () => {
   console.log(`Data Server is Running at Port No ${PORT}`);

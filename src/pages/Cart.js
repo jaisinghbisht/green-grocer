@@ -7,48 +7,56 @@ const Cart = ({ cartItems }) => {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  
 
-  
+  const roundedTotalPrice = Math.round(totalPrice * 100) / 100;
+
+  const handleDeleteItem = async (userId, itemId) => {
+    try {
+      const deleteUrl = `http://localhost:8080/api/delete-from-cart/${userId}/${itemId}`;
+      await axios.delete(deleteUrl);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const initPayment = (data) => {
-		const options = {
-			key: "rzp_test_fYBmLVqHmRpeiu",
-			amount: data.amount,
-			currency: data.currency,
-			name: 'Green Grocer',
-			description: "Test Transaction",
-			
-			order_id: data.id,
-			handler: async (response) => {
-				try {
-					const verifyUrl = "http://localhost:8080/api/payment/verify";
-					const { data } = await axios.post(verifyUrl, response);
-					console.log(data);
-				} catch (error) {
-					console.log(error);
-				}
-			},
-			theme: {
-				color: "#008000",
-			},
-		};
-		const rzp1 = new window.Razorpay(options);
-		rzp1.open();
-	};
+    const options = {
+      key: "rzp_test_fYBmLVqHmRpeiu",
+      amount: data.amount,
+      currency: data.currency,
+      name: "Green Grocer",
+      description: "Test Transaction",
 
-	const handlePayment = async () => {
-		try {
-			const orderUrl = "http://localhost:8080/api/payment/orders";
-			//const { data } = await axios.post(orderUrl, { amount: totalPrice });
+      order_id: data.id,
+      handler: async (response) => {
+        try {
+          const verifyUrl = "http://localhost:8080/api/payment/verify";
+          const { data } = await axios.post(verifyUrl, response);
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      theme: {
+        color: "#008000",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+
+  const handlePayment = async () => {
+    try {
+      const orderUrl = "http://localhost:8080/api/payment/orders";
+      //const { data } = await axios.post(orderUrl, { amount: totalPrice });
       const amountInPaise = Math.round(totalPrice * 100); // Convert to integer in paise
-    const { data } = await axios.post(orderUrl, { amount: amountInPaise });
-			console.log(data);
-			initPayment(data.data);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
+      const { data } = await axios.post(orderUrl, { amount: amountInPaise });
+      console.log(data);
+      initPayment(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="cart-container">
@@ -67,54 +75,28 @@ const Cart = ({ cartItems }) => {
             <p>Rs {item.price}</p>
             <p>{item.quantity}</p>
             <p>Rs {item.price * item.quantity}</p>
+            <button
+              onClick={() => {
+                const userId = sessionStorage.getItem("userId");
+                handleDeleteItem(userId, item._id);
+              }}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
       <div className="cart-summary">
         <div className="total-summary">
           <p>Total Items: {cartItems.length}</p>
-          <p>Total Price: Rs {totalPrice}</p>
+          <p>Total Price: Rs {roundedTotalPrice.toFixed(2)}</p>
         </div>
-         <button className="buy-button" onClick={handlePayment}>Buy Now</button> 
-{/*         <button onClick={() => handlePayment(totalPrice)}> Buy NOW </button>
- */}
+        <button className="buy-button" onClick={handlePayment}>
+          Buy Now
+        </button>
       </div>
     </div>
   );
 };
 
 export default Cart;
-
-
-
-/* const handleOpenRazorpay=(data)=>{
-  const options={
-    key: 'rzp_test_fYBmLVqHmRpeiu',
-    amount: Number(data.amount),
-    currency: data.currency,
-    order_id: data.id,
-    name: 'SHOPPING APP',//    
-    description: 'XYZ',//
-    handler: function (response) {
-      console.log(response, "34")
-     
-  }
-
-
-  }
-  const rzp = new window.Razorpay(options)
-  rzp.open()
-}
-
-const handlePayment = (amount) => {
-  const _data = { amount: amount }
-  axios.post("http://localhost:8080/orders", _data)
-      .then(res => {
-          console.log(res.data, "29")
-          handleOpenRazorpay(res.data.data)
-      })
-      .catch(err => {
-          console.log(err)
-      })
-}
- */
