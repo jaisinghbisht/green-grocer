@@ -9,7 +9,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./components/Search.js";
-import ContactUs from "./pages/Contactus";
+import ContactUs from "./pages/contactus";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(

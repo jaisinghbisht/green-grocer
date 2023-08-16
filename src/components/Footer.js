@@ -22,49 +22,57 @@ const FooterComponent = () => {
                 <a href="about">about us</a>
               </li>
               <li>
-                <a href="#">our services</a>
+                Our services
               </li>
               <li>
-                <a href="#">privacy policy</a>
+                Privacy policy
               </li>
               <li>
-                <a href="#">affiliate program</a>
+                Affiliate program
+              </li>
+            </ul>
+          </div>
+
+                    <div className="footer-col">
+            <h4>PARTNERS</h4>
+            <ul>
+              <li>
+                <a href="https://www.bigbasket.com/">Bigbasket</a>
+              </li>
+              <li>
+                <a href="https://www.grofers.com/">Grofers</a>
+              </li>
+              <li>
+                <a href="https://www.milkbasket.com/">Milkbasket</a>
+              </li>
+              <li>
+              <a href="https://www.amazon.in/pantry-online-grocery-shopping-store/b?ie=UTF8&node=9574332031">Amazon Pantry</a>
+              </li>
+              <li>
+                +Many more...
               </li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>PARTNERS</h4>
-            <ul>
-              <li>
-                <a href="#">Bigbasket</a>
-              </li>
-              <li>
-                <a href="#">Grofers</a>
-              </li>
-              <li>
-                <a href="#">Milkbasket</a>
-              </li>
-              <li>
-                <a href="#">Greendesk</a>
-              </li>
-              <li>
-                <a href="#">+many more...</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-col">
             <h4>ADDRESS</h4>
             <ul>
               <li>
-                <a href="#">
-                  building 101<br></br>
-                  Green Avenue<br></br>
-                  Dehradun<br></br>
-                  248001<br></br>
-                  Uttarakhand
-                </a>
+                  Building 101
               </li>
+              <li>
+                  Green Avenue
+              </li>
+              <li>
+                  Dehradun
+              </li>
+              <li>
+                  248001
+              </li>
+              <li>
+                  Uttarakhand
+              </li>
+              
             </ul>
           </div>
           <div className="footer-col">
