@@ -48,6 +48,19 @@
     color: #333;
     margin-bottom: 20px;
 }
+.about-us p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
+}
+.about-us li{
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+
+
+}
 
 .about-us img {
     display: block;
