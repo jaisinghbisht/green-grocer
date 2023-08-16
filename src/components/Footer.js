@@ -56,21 +56,13 @@ const FooterComponent = () => {
 
           <div className="footer-col">
             <h4>ADDRESS</h4>
-            <ul>
+           <ul>
               <li>
-                  Building 101
-              </li>
-              <li>
-                  Green Avenue
-              </li>
-              <li>
-                  Dehradun
-              </li>
-              <li>
-                  248001
-              </li>
-              <li>
-                  Uttarakhand
+              <a href="contactus"> Building 101<br></br>
+               Green Avenue<br></br>
+               Dehradun<br></br>
+               248001<br></br>
+               Uttarakhand</a>
               </li>
               
             </ul>

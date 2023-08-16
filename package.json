@@ -15,6 +15,7 @@
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.4.0",
         "dom": "^0.0.3",
+        "emailjs": "^4.0.2",
         "emailjs-com": "^3.2.0",
         "express-session": "^1.17.3",
         "font-awesome": "^4.7.0",
