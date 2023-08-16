@@ -134,7 +134,6 @@ const Home = () => {
               <FontAwesomeIcon icon={solidStar} />
               <FontAwesomeIcon icon={solidStar} />
               <FontAwesomeIcon icon={faStarHalfStroke} />
-              <i className="fa-regular fa-star" />
             </div>
           </div>
           <div className="reviews-col">

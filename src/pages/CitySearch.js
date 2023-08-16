@@ -98,7 +98,10 @@ function CitySearch() {
         {selectedVegetables.map((vegetable) => (
           <VegetableItem
             key={vegetable.name}
-            image={`images/vegetables/${vegetable.name.toLowerCase()}.jpeg`}
+            image={`images/vegetables/${vegetable.name
+              .toLowerCase()
+              .split(` `)
+              .join(`_`)}.jpeg`}
             name={vegetable.name}
             price={vegetable.price}
             handleAddToCart={handleAddToCart}
