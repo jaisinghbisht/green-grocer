@@ -24,9 +24,22 @@ model = LinearRegression()
 # Streamlit app
 st.title('Fruits and Vegetables Prices Prediction')
 
+# Generate future dates for prediction (including data up to 2023)
+future_dates = pd.date_range(start=data['Date'].max(), end='2023-12-31', freq='M')
+future_years = future_dates.year
+future_months = future_dates.month
+
 # Plotting
 fig, ax = plt.subplots(figsize=(10, 6))
 ax.plot(pd.to_datetime(monthly_data[['Year', 'Month']].assign(day=1)), monthly_data['Average'], marker='o', label='Actual Prices', color='blue')
+
+# Predict average prices for all commodities combined
+X = monthly_data[['Year', 'Month']]
+y = monthly_data['Average']
+model.fit(X, y)
+average_predictions = model.predict(pd.DataFrame({'Year': future_years, 'Month': future_months}))
+ax.plot(future_dates, average_predictions, label='Predicted Average Prices', linestyle='dashed', color='orange')
+
 ax.set_xlabel('Date')
 ax.set_ylabel('Average Price')
 ax.set_title('Monthly Average Prices')
@@ -40,11 +53,6 @@ st.pyplot(fig)
 # Display a table of fruits and vegetables with previous and future prices
 st.write('## List of Fruits and Vegetables with Prices:')
 fruit_vegetable_prices = data.groupby('Commodity')['Average'].last().reset_index()
-
-# Generate future dates for prediction
-future_dates = pd.date_range(start=data['Date'].max(), periods=12, freq='M')
-future_years = future_dates.year
-future_months = future_dates.month
 
 # Generate separate future predictions for each commodity
 future_predictions = []
