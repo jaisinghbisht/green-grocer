@@ -92,3 +92,9 @@
     transition: 1s;
     color: white;
 }
+
+.message-text {
+    font-size: 14px;
+    color: green;
+    margin-top: 10px;
+}

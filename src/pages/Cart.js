@@ -3,6 +3,7 @@ import axios from "axios";
 import "../styles/cart.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = ({ cartItems, setCartItems }) => {
@@ -12,6 +13,40 @@ const Cart = ({ cartItems, setCartItems }) => {
   );
 
   const roundedTotalPrice = Math.round(totalPrice * 100) / 100;
+
+  const handleIncreaseQuantity = async (userId, itemId) => {
+    try {
+      const updateUrl = `http://localhost:8080/api/update-cart-quantity/${userId}/${itemId}`;
+      await axios.put(updateUrl, { action: "increase" });
+      // Update cartItems state here
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
+          item._id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDecreaseQuantity = async (userId, itemId) => {
+    try {
+      if (cartItems.find((item) => item._id === itemId).quantity <= 1) {
+        // Don't allow decreasing below 1
+        return;
+      }
+      const updateUrl = `http://localhost:8080/api/update-cart-quantity/${userId}/${itemId}`;
+      await axios.put(updateUrl, { action: "decrease" });
+      // Update cartItems state here
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
+          item._id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleDeleteItem = async (userId, itemId) => {
     try {
@@ -80,7 +115,27 @@ const Cart = ({ cartItems, setCartItems }) => {
             <p>{index + 1}</p>
             <p>{item.name}</p>
             <p>Rs {item.price}</p>
-            <p>{item.quantity}</p>
+            <p>
+              <button
+                onClick={() => {
+                  const userId = sessionStorage.getItem("userId");
+                  handleDecreaseQuantity(userId, item._id);
+                }}
+                className="quantity-button"
+              >
+                <FontAwesomeIcon icon={faMinus} />
+              </button>
+              {item.quantity}
+              <button
+                onClick={() => {
+                  const userId = sessionStorage.getItem("userId");
+                  handleIncreaseQuantity(userId, item._id);
+                }}
+                className="quantity-button"
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </button>
+            </p>
             <p>Rs {(item.price * item.quantity).toFixed(2)}</p>
             <div className="cart-item-delete">
               <button

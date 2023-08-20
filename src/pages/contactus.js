@@ -1,29 +1,51 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "../styles/contactus.css";
 import "font-awesome/css/font-awesome.min.css";
 import emailjs from "emailjs-com";
 
 function ContactUs() {
   const form = useRef();
+  const [messageSent, setMessageSent] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_9uwzyg4",
-        "template_384st5l",
-        form.current,
-        "1DPVzHFgIH83KQgZ6"
-      )
-      .then(
-        (result) => {
-          console.log("Email sent successfully:", result.text);
-        },
-        (error) => {
-          console.log("Error sending email:", error.text);
-        }
-      );
+    const isValid =
+      form.current.from_name.value &&
+      form.current.from_email.value &&
+      form.current.subject.value &&
+      form.current.message.value;
+
+    if (isValid) {
+      emailjs
+        .sendForm(
+          "service_9uwzyg4",
+          "template_384st5l",
+          form.current,
+          "1DPVzHFgIH83KQgZ6"
+        )
+        .then(
+          (result) => {
+            setMessageSent(true);
+            setTimeout(() => {
+              setMessageSent(false);
+            }, 2000);
+            console.log("Email sent successfully:", result.text);
+          },
+          (error) => {
+            setMessageSent(true);
+            setTimeout(() => {
+              setMessageSent(false);
+            }, 2000);
+            console.log("Error sending email:", error.text);
+          }
+        );
+    } else {
+      setMessageSent(true);
+      setTimeout(() => {
+        setMessageSent(false);
+      }, 2000);
+    }
   };
 
   return (
@@ -93,7 +115,7 @@ function ContactUs() {
                 required
               ></textarea>
               <button type="submit" className="contactus-btn">
-                Send Message
+                {messageSent ? "Message Sent" : "Send Message"}
               </button>
             </form>
           </div>

@@ -37,6 +37,7 @@ body {
 
 .cart-item p {
     margin: 5px 0;
+    text-align: center;
 }
 
 .cart-item-header {
@@ -46,6 +47,23 @@ body {
 .cart-items {
     width: 100%;
     margin-bottom: 20px;
+}
+
+.quantity-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-size: 12px;
+    margin: 0 5px;
+}
+
+.quantity-button:focus {
+    outline: none;
+}
+
+.quantity-button:hover {
+    color: #444;
 }
 
 .cart-summary {
