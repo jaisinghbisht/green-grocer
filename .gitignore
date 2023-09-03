@@ -5,6 +5,9 @@
 
 # backend
 /server/node_modules
+server/*.env
+
+.env
 
 # testing
 /coverage
