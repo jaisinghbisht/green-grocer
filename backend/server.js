@@ -65,5 +65,5 @@ app.use("/api", authRoutes);
 app.use("/api/payment/", paymentRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Data Server is Running at Port No ${PORT}`);
+  console.log(`Server is Running at Port No ${PORT}`);
 });
