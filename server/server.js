@@ -1,11 +1,13 @@
-// server.js
+// mergedServer.js
+const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
 const paymentRoutes = require("./paymentController");
 const app = express();
-const PORT = process.env.PORT || 8080;
+dotenv.config({ path: "./config.env" });
+const PORT = process.env.PORT;
 var bodyParser = require("body-parser");
 
 // Middleware
@@ -23,19 +25,11 @@ app.use(
   })
 );
 
-// MongoDB connection
-const uri =
-  "mongodb+srv://greengrocer:Wglwdzy2PCf0cPNG@cluster0.jzddl2j.mongodb.net/test"; // Replace with your MongoDB URI
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const db = mongoose.connection;
-db.once("open", () => {
-  console.log("Connected to MongoDB");
-});
+require("./db/conn");
+app.use(require("./router/authlogin"));
 
 // Import City model
 const City = require("./models/cityschema");
-const User = require("./models/userSchema");
 
 // Routes
 app.get("/api/cities", async (req, res) => {

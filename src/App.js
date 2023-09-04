@@ -34,7 +34,7 @@ function App() {
       }
 
       const response = await fetch(
-        `http://localhost:8080/api/get-cart/${userId}`
+        `http://localhost:5000/api/get-cart/${userId}`
       );
       const data = await response.json();
       console.log("Fetched Cart Items:", data);
