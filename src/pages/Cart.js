@@ -16,7 +16,7 @@ const Cart = ({ cartItems, setCartItems }) => {
 
   const handleIncreaseQuantity = async (userId, itemId) => {
     try {
-      const updateUrl = `http://localhost:5000/api/update-cart-quantity/${userId}/${itemId}`;
+      const updateUrl = `api/update-cart-quantity/${userId}/${itemId}`;
       await axios.put(updateUrl, { action: "increase" });
       // Update cartItems state here
       setCartItems((prevCartItems) =>
@@ -35,7 +35,7 @@ const Cart = ({ cartItems, setCartItems }) => {
         // Don't allow decreasing below 1
         return;
       }
-      const updateUrl = `http://localhost:5000/api/update-cart-quantity/${userId}/${itemId}`;
+      const updateUrl = `api/update-cart-quantity/${userId}/${itemId}`;
       await axios.put(updateUrl, { action: "decrease" });
       // Update cartItems state here
       setCartItems((prevCartItems) =>
@@ -50,7 +50,7 @@ const Cart = ({ cartItems, setCartItems }) => {
 
   const handleDeleteItem = async (userId, itemId) => {
     try {
-      const deleteUrl = `http://localhost:5000/api/delete-from-cart/${userId}/${itemId}`;
+      const deleteUrl = `api/delete-from-cart/${userId}/${itemId}`;
       await axios.delete(deleteUrl);
       // Update cartItems state here
       setCartItems((prevCartItems) =>
@@ -72,7 +72,7 @@ const Cart = ({ cartItems, setCartItems }) => {
       order_id: data.id,
       handler: async (response) => {
         try {
-          const verifyUrl = "http://localhost:5000/api/payment/verify";
+          const verifyUrl = "api/payment/verify";
           const { data } = await axios.post(verifyUrl, response);
           console.log(data);
         } catch (error) {
@@ -89,7 +89,7 @@ const Cart = ({ cartItems, setCartItems }) => {
 
   const handlePayment = async () => {
     try {
-      const orderUrl = "http://localhost:5000/api/payment/orders";
+      const orderUrl = "api/payment/orders";
       //const { data } = await axios.post(orderUrl, { amount: totalPrice });
       const amountInPaise = Math.round(totalPrice * 100); // Convert to integer in paise
       const { data } = await axios.post(orderUrl, { amount: amountInPaise });

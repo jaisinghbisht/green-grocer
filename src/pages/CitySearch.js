@@ -28,7 +28,7 @@ function CitySearch() {
     }
 
     // Make a POST request to the /api/add-to-cart route
-    const response = await fetch("http://localhost:5000/api/add-to-cart", {
+    const response = await fetch("api/add-to-cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function CitySearch() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/cities")
+      .get("api/cities")
       .then((response) => {
         setCities(response.data);
       })
@@ -64,7 +64,7 @@ function CitySearch() {
     }
 
     axios
-      .get(`http://localhost:5000/api/city/${selectedCity}`)
+      .get(`api/city/${selectedCity}`)
       .then((response) => {
         setSelectedVegetables(response.data.vegetables);
       })
