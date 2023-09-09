@@ -3,7 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const City = require("../models/cityschema"); // Import your City model
-const User = require("../models/userSchema"); // Import your User model
+const User = require("../models/userschema"); // Import your User model
 
 router.get("/cities", async (req, res) => {
   try {

@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser"); // Add this line
 app.use(cors());
 
 require("../db/conn");
-const User = require("../models/userSchema");
+const User = require("../models/userschema");
 
 app.get("/", (req, res) => {
   res.send("Hello World app");
