@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9953ada7.css",
+    "main.js": "/static/js/main.46224526.js",
+    "static/media/loginbackground.jpg": "/static/media/loginbackground.a35c6d806bcfed50e8e2.jpg",
+    "static/media/background.jpg": "/static/media/background.743492ab658bfd1c8fde.jpg",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/aboutus.jpg": "/static/media/aboutus.9c0f289696cf97335d6f.jpg",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "index.html": "/index.html",
+    "main.9953ada7.css.map": "/static/css/main.9953ada7.css.map",
+    "main.46224526.js.map": "/static/js/main.46224526.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9953ada7.css",
+    "static/js/main.46224526.js"
+  ]
+}
