@@ -15,6 +15,24 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
+const path = require("path");
+
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, "../frontend/build");
+
+app.use(express.static(buildPath));
+
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../frontend/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
+
 // Set up the session middleware
 app.use(
   session({
