@@ -90,10 +90,20 @@ const Cart = ({ cartItems, setCartItems }) => {
   const handlePayment = async () => {
     try {
       const orderUrl = "api/payment/orders";
-      //const { data } = await axios.post(orderUrl, { amount: totalPrice });
       const amountInPaise = Math.round(totalPrice * 100); // Convert to integer in paise
       const { data } = await axios.post(orderUrl, { amount: amountInPaise });
-      console.log(data);
+
+      // Store transaction details in the backend
+      const userId = sessionStorage.getItem("userId");
+      const transactionId = data.data.id; // Assuming Razorpay returns a transaction ID
+      const transactionData = {
+        userId,
+        cartItems,
+        transactionId,
+      };
+      await axios.post("/api/store-transaction", transactionData);
+
+      // Initialize the payment
       initPayment(data.data);
     } catch (error) {
       console.log(error);

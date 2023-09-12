@@ -64,6 +64,31 @@ app.use("/api", authRoutes);
 
 app.use("/api/payment/", paymentRoutes);
 
+// Import necessary modules at the top of your server.js
+const Transaction = require("./models/transactionchema"); // Create a Transaction model if not already done
+
+// Add a new route to store transaction details
+app.post("/api/store-transaction", async (req, res) => {
+  try {
+    const { userId, cartItems, transactionId } = req.body;
+
+    // Create a new transaction document
+    const transaction = new Transaction({
+      userId,
+      cartItems,
+      transactionId,
+      purchaseDate: new Date(), // Set the purchase date
+    });
+
+    // Save the transaction to the database
+    await transaction.save();
+
+    res.status(201).json({ message: "Transaction details saved successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is Running at Port No ${PORT}`);
 });
